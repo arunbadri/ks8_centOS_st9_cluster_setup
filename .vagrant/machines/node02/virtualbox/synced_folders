@@ -1,1 +1,0 @@
-{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/arunbadri/Documents/my_work/ks8_centOS9","disabled":false,"rsync__exclude":[".git/","scripts/","Vagrantfile"],"__vagrantfile":true,"exclude":[".git/","scripts/","Vagrantfile"],"owner":"vagrant","group":"vagrant"}}}
