@@ -1,0 +1,1 @@
+kubectl rollout restart deployment/kubernetes-dashboard --namespace=kubernetes-dashboard
