@@ -1,0 +1,27 @@
+global
+    daemon
+    maxconn 256
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+frontend kubernetes-frontend 
+    bind $CONTROL_IP:$HA_PROXY_PORT
+    mode tcp
+    option tcplog
+    default_backend kubernetes-backend
+backend kubernetes-backend
+    balance roundrobin
+    mode tcp
+    option tcp-check
+    server master-node01 10.1.0.21:6443 check fall 3 rise 2
+    server master-node02 10.1.0.22:6443 check fall 3 rise 2
+listen admin
+    bind *:8080
+    stats enable
+    stats uri /stats
+
+
+
+    

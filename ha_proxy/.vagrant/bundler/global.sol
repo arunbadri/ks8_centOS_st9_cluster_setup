@@ -1,0 +1,1 @@
+{"dependencies":[["vagrant-rsync-back",["= 0.0.1"]]],"checksum":"8c240a3ca4bdb7c3d7b50476574d74b06bb0df6e265ad0b61678677e7f1c9d3a","vagrant_version":"2.3.7"}
