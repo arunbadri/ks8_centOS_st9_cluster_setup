@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mongo-client
+  name: mongo-client
+  namespace: mongoxxpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-client
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mongo-client
+    spec:
+      containers:
+      - image: quay.io/ibmmas/mongo@sha256:8c48baa1571469d7f5ae6d603b92b8027ada5eb39826c009cb33a13b46864908 
+        name: mongo-client
+        env:
+        - name: mongo-client_INITDB_ROOT_USERNAME
+          value: 'dummy'
+        - name: mongo-client_INITDB_ROOT_PASSWORD
+          value: 'dummy'

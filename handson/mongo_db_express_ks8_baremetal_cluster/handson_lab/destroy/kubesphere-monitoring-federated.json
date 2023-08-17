@@ -1,0 +1,70 @@
+{
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+        "creationTimestamp": "2023-08-03T10:30:24Z",
+        "deletionGracePeriodSeconds": 0,
+        "deletionTimestamp": "2023-08-11T17:57:36Z",
+        "finalizers": [
+        ],
+        "labels": {
+            "kubernetes.io/metadata.name": "kubesphere-monitoring-federated",
+            "kubesphere.io/namespace": "kubesphere-monitoring-federated",
+            "kubesphere.io/workspace": "system-workspace"
+        },
+        "name": "kubesphere-monitoring-federated",
+        "ownerReferences": [
+            {
+                "apiVersion": "tenant.kubesphere.io/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "Workspace",
+                "name": "system-workspace",
+                "uid": "1fbef5d2-9a24-466c-96b8-8ccfb32538c0"
+            }
+        ],
+        "resourceVersion": "1496501",
+        "uid": "92d9295a-264f-4bab-9561-0da6888455fd"
+    },
+    "spec": {},
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2023-08-11T17:57:42Z",
+                "message": "All resources successfully discovered",
+                "reason": "ResourcesDiscovered",
+                "status": "False",
+                "type": "NamespaceDeletionDiscoveryFailure"
+            },
+            {
+                "lastTransitionTime": "2023-08-11T17:57:42Z",
+                "message": "All legacy kube types successfully parsed",
+                "reason": "ParsedGroupVersions",
+                "status": "False",
+                "type": "NamespaceDeletionGroupVersionParsingFailure"
+            },
+            {
+                "lastTransitionTime": "2023-08-11T17:57:42Z",
+                "message": "All content successfully deleted, may be waiting on finalization",
+                "reason": "ContentDeleted",
+                "status": "False",
+                "type": "NamespaceDeletionContentFailure"
+            },
+            {
+                "lastTransitionTime": "2023-08-11T17:57:42Z",
+                "message": "All content successfully removed",
+                "reason": "ContentRemoved",
+                "status": "False",
+                "type": "NamespaceContentRemaining"
+            },
+            {
+                "lastTransitionTime": "2023-08-11T17:57:42Z",
+                "message": "All content-preserving finalizers finished",
+                "reason": "ContentHasNoFinalizers",
+                "status": "False",
+                "type": "NamespaceFinalizersRemaining"
+            }
+        ],
+        "phase": "Terminating"
+    }
+}

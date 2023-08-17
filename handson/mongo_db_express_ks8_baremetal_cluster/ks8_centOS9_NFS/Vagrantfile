@@ -1,0 +1,19 @@
+#filename=Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |cf|
+    # NFS Server
+    cf.vm.define "nfs-server" do |nfs|
+      #nfs.vm.box = "archlinux/archlinux"
+      nfs.vm.box = "centos/stream9"
+      nfs.vm.hostname = "nfs-server"
+      nfs.vm.network "private_network", ip: "10.1.0.100"
+      nfs.vm.provider "virtualbox" do |n|
+        n.name = "nfs-server"
+        n.memory = 2048 
+        n.cpus = 2
+      end
+      nfs.vm.provision "shell",path: "bootstrap_nfs.sh"
+    end
+  end
