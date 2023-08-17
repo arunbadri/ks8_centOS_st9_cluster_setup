@@ -10,7 +10,8 @@ sudo kubeadm config images pull
 
 echo "Preflight Check Passed: Downloaded All Required Images"
 
-sudo kubeadm init --apiserver-advertise-address=$CONTROL_IP --apiserver-cert-extra-sans=$CONTROL_IP --pod-network-cidr=$POD_CIDR --service-cidr=$SERVICE_CIDR --node-name "$NODENAME" --ignore-preflight-errors Swap
+#sudo kubeadm init --apiserver-advertise-address=$CONTROL_IP --apiserver-cert-extra-sans=$CONTROL_IP --pod-network-cidr=$POD_CIDR --service-cidr=$SERVICE_CIDR --node-name "$NODENAME" --ignore-preflight-errors Swap
+sudo kubeadm init --apiserver-advertise-address=$CONTROL_IP --apiserver-cert-extra-sans=$CONTROL_IP --pod-network-cidr=$POD_CIDR --service-cidr=$SERVICE_CIDR --node-name "$NODENAME" --control-plane-endpoint=$HA_PROXY_IP":"$HA_PROXY_PORT --upload-certs --ignore-preflight-errors Swap
 
 mkdir -p "$HOME"/.kube
 sudo cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
@@ -29,10 +30,27 @@ else
 fi
 
 cp -i /etc/kubernetes/admin.conf $config_path/config
-touch $config_path/join.sh
-chmod +x $config_path/join.sh
+touch $config_path/join_master.sh
+chmod +x $config_path/join_master.sh
 
-kubeadm token create --print-join-command > $config_path/join.sh
+touch $config_path/join_worker.sh
+chmod +x $config_path/join_worker.sh
+
+
+create_cert_cmd=$(sudo kubeadm init phase upload-certs --upload-certs | grep -vw -e certificate -e Namespace)
+create_token_print_cmd_master=$(sudo kubeadm token create --certificate-key $create_cert_cmd --print-join-command)
+create_token_print_cmd_worker=$(sudo kubeadm token create --print-join-command)
+
+
+echo $create_token_print_cmd_master --apiserver-advertise-address=\$1 > $config_path/join_master.sh
+echo $create_token_print_cmd_worker > $config_path/join_worker.sh
+
+#echo $create_token_print_cmd_master --apiserver-advertise-address=\$1 > $config_path/join_master.sh
+#echo $create_token_print_cmd_worker --apiserver-advertise-address=\$1 > $config_path/join_worker.sh
+
+
+#echo $(kubeadm token create --print-join-command) --control-plane --certificate-key $(kubeadm init phase upload-certs --upload-certs | grep -vw -e certificate -e Namespace) > $config_path/join_master.sh
+#echo $(kubeadm token create --print-join-command) --certificate-key $(kubeadm init phase upload-certs --upload-certs | grep -vw -e certificate -e Namespace) > $config_path/join_worker.sh
 
 # Install Calico Network Plugin
 

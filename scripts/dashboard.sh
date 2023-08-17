@@ -62,5 +62,5 @@ EOF
 Use it to log in at:
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=kubernetes-dashboard
 "
- kubectl rollout restart deployment/kubernetes-dashboard --namespace=kubernetes-dashboard
+
 fi
