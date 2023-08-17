@@ -1,0 +1,99 @@
+   0 ls -ltra
+   1 cd controller/
+   2 ls -ltra
+   3 cd ..
+   4 apk add --no-cache curl
+   5 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+   6 chmod +x ./kubectl
+   7 mv ./kubectl /usr/local/bin/kubectl
+   8 curl -o /tmp/helm.tar.gz -LO https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz
+   9 tar -C /tmp/ -zxvf /tmp/helm.tar.gz
+  10 mv /tmp/linux-amd64/helm /usr/local/bin/helm
+  11 chmod +x /usr/local/bin/helm
+  12 helm
+  13 clear
+  14 kubectl get nodes
+  15 ls -ltra
+  16 export KUBECONFIG=./configs/config 
+  17 kubectl get nodes
+  18 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+  19 helm search repo ingress-nginx --versions
+  20 CHART_VERSION="4.7.1"
+  21 APP_VERSION="1.8.1"
+  22 ls -ltra
+  23 cd controller/
+  24 mkdir -p nginx/manifests/
+  25 pwd
+  26 helm template ingress-nginx ingress-nginx \
+  27 --repo https://kubernetes.github.io/ingress-nginx \
+  28 --version ${CHART_VERSION} \
+  29 --namespace ingress-nginx \
+  30 ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  31 helm template ingress-nginx ingress-nginx \
+  32 --repo https://kubernetes.github.io/ingress-nginx \
+  33 --version ${CHART_VERSION} \
+  34 --namespace ingress-nginx \
+  35 ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  36 ls -ltra
+  37 cd ..
+  38 ls -ltra
+  39 cd controller/
+  40 ls -ltra
+  41 ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  42 helm template ingress-nginx ingress-nginx \
+  43 --repo https://kubernetes.github.io/ingress-nginx \
+  44 --version ${CHART_VERSION} \
+  45 --namespace ingress-nginx \
+  46 ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  47 pwd
+  48 cd ..
+  49 helm template ingress-nginx ingress-nginx \
+  50 --repo https://kubernetes.github.io/ingress-nginx \
+  51 --version ${CHART_VERSION} \
+  52 --namespace ingress-nginx \
+  53 ./controller/nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  54 clear
+  55 helm template ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --version ${CHART_VERSION} --namespace ingress-nginx > ./controller/nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  56 kubectl create namespace ingress-nginx
+  57 kubens
+  58 apk add kubens
+  59 kubectl krew install ctx
+  60 kubectl 
+  61 kubectl krew install ctx
+  62 kubectl 
+  63 apk install kubectx
+  64 apk add kubectx
+  65 kubens
+  66 clear
+  67 kubens
+  68 kubectl create namespace ingress-nginx
+  69 kubectl delete ingres-nginx
+  70 kubectl delete -n ingres-nginx
+  71 kubectl delete namespace ingres-nginx
+  72 kubectl delete namespace ingresx-nginx
+  73 kubectl delete namespace ingress-nginx
+  74 clear
+  75 kubectl create namespace ingress-nginx
+  76 kubectl apply -f ./kubernetes/ingress/controller/nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  77 pwd
+  78 ls -ltra
+  79 kubectl apply -f ./controller/nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
+  80 kubens
+  81 kubens ingress-nginx
+  82 kubectl get pods
+  83 kubect get svc
+  84 kubectl get svc
+  85 ls -ltra
+  86 kubectl apply -f controller/nginx/features/proxy_by_path_hostname.yaml 
+  87 clear
+  88 kubectl apply -f controller/nginx/features/proxy_by_path_hostname.yaml 
+  89 kubectl delete -f controller/nginx/features/proxy_by_path_hostname.yaml 
+  90 kubectl apply -f controller/nginx/features/proxy_by_path_hostname.yaml 
+  91 kubens
+  92 kubectl get storageclass
+  93 ls -ltra
+  94 cd ..
+  95 ls -ltra
+  96 cd work/
+  97 ls -ltra
+  98 history
